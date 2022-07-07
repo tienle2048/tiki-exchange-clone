@@ -1,0 +1,61 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.okla1{
+  background-color: rgb(45, 233, 233);
+}
+.okla2{
+  background-color: rgb(33, 168, 40);
+}
+.okla3{
+  background-color: rgb(61, 34, 134);
+}
+.okla4{
+  background-color: rgb(202, 187, 47);
+}
+.okla5{
+  background-color: rgb(73, 42, 54);
+}
+.okla6{
+  background-color: rgb(114, 36, 69);
+}
+.okla7{
+  background-color: rgb(209, 219, 114);
+}
