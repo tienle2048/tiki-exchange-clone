@@ -27,6 +27,7 @@ function App() {
       cols:{ lg: 12, md: 12, sm: 12, xs: 4, xxs: 2 },
       rowHeight:56,
       margin:[0,0],
+      containerPadding: [0, 0],
       isResizable:true
   }
 

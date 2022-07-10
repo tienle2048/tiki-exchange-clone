@@ -48,7 +48,8 @@
             display: flex;
             line-height: 20px;
             align-items: center;
-            img{
+
+            img {
                 height: 16px;
                 width: 16px;
                 margin-right: 4px;
@@ -59,7 +60,8 @@
             display: flex;
             line-height: 20px;
             align-items: center;
-            img{
+
+            img {
                 height: 16px;
                 width: 16px;
                 margin-right: 4px;
@@ -73,17 +75,76 @@
             margin: 0px 5px;
             cursor: initial;
         }
-        .icon{
+
+        .icon {
             padding-right: 4px;
-            .user{
+
+            .user {
                 height: 18px;
                 width: 18px;
             }
-            .setting{
+
+            .setting {
                 height: 18px;
                 width: 18px;
             }
         }
+
+    }
+}
+
+.dropdown {
+    position: relative;
+    margin: 0;
+    padding: 4px 0;
+    text-align: left;
+    list-style-type: none;
+    background-color: #1f1f1f;
+    background-clip: padding-box;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 48%), 0 6px 16px 0 rgb(0 0 0 / 32%), 0 9px 28px 8px rgb(0 0 0 / 20%);
+
+    .bar {
+        height: 1px;
+        margin: 4px 0;
+        overflow: hidden;
+        line-height: 0;
+        background-color: #303030;
+    }
+
+    .logout {
+        clear: both;
+        margin: 0;
+        padding: 5px 12px;
+        color: hsla(0, 0%, 100%, .85);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        cursor: pointer;
+        transition: all .3s;
+    }
+
+    .userinfo {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        text-align: center;
+        padding: 5px 12px;
         
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            font-size: 24px;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
     }
 }
