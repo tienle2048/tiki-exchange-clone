@@ -1,0 +1,21 @@
+.wrapper{
+    display: grid;
+    row-gap: 2px;
+    .label{
+        color: var(--gray-30);
+        white-space: nowrap;
+    }
+    .value{
+        font-size: 14px;
+    }
+
+    .red{
+        color: var(--color-down);
+    }
+    .yellow{
+        color: var(--yellow-70);
+    }
+    .green{
+        color: var(--color-up);
+    }
+}

@@ -1,0 +1,51 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 66px 1px minmax(0px, 1fr);
+    gap: 20px;
+    font-size: 14px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 8px 16px;
+    background: var(--dark-bg);
+
+    .token {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        .token-logo{
+            width: 32px;
+            height: 32px;
+            img{
+                height: 100%;
+            }
+            .label{
+                font-size: 14px;
+            }
+        }
+    }
+
+    .divider {
+        height: 100%;
+        margin: 0px;
+        border-color: var(--gray-2);
+        position: relative;
+        top: -0.06em;
+        display: inline-block;
+        vertical-align: middle;
+        border-top: 0;
+        border-left: 1px solid hsla(0, 0%, 100%, .12);
+
+    }
+
+    .ticker-list {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        width: 100%;
+        height: fit-content;
+        overflow-x: auto;
+        font-size: 12px;
+
+    }
+}

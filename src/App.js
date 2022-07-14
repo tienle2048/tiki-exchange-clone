@@ -26,7 +26,7 @@ function App() {
       breakpoints:{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
       cols:{ lg: 12, md: 12, sm: 12, xs: 4, xxs: 2 },
       rowHeight:56,
-      margin:[0,0],
+      margin:[1,1],
       containerPadding: [0, 0],
       isResizable:true
   }

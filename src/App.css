@@ -1,8 +1,11 @@
-
-
-.okla2{
-  background-color: rgb(33, 168, 40);
+body{
+  background-color: black;
 }
+
+.okla1{
+  z-index: 1;
+}
+
 .okla3{
   background-color: rgb(61, 34, 134);
 }

@@ -44,6 +44,7 @@ function Header() {
                         <div className={cx('okla')}></div>
                         <Tippy
                             placement='bottom-start'
+                            interactive
                             render={attrs => (
                                 <div tabIndex="0">
                                 <ul className={cx('dropdown')}>
