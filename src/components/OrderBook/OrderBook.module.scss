@@ -1,0 +1,48 @@
+.wrapper {
+    background: var(--dark-bg);
+    display: grid;
+    grid-template-rows: fit-content(48px) minmax(0px, 1fr);
+    row-gap: 16px;
+    padding: var(--side-padding);
+    height: 100%;
+    font-size: 14px;
+
+
+}
+
+.orderbook-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    
+
+    .action {
+        height: 16px;
+        width: 16px;
+        margin-left: 6px;
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+
+.label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.orderlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

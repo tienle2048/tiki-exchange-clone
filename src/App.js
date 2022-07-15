@@ -28,7 +28,8 @@ function App() {
       rowHeight:56,
       margin:[1,1],
       containerPadding: [0, 0],
-      isResizable:true
+      isResizable:true,
+      isDraggable:true
   }
 
 

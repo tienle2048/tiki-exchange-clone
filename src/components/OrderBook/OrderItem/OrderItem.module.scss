@@ -1,0 +1,39 @@
+.order-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 24px;
+    padding: 4px 0px;
+    align-items: center;
+
+    .price-up{
+        color: var(--color-up);
+    }
+    .price-down{
+        color:var(--color-down);
+    }
+    .volume{
+        color: var(--gray-20);
+    }
+    .total{
+        color: var(--gray-20);
+    }
+
+
+    .volume-bar {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 26%;
+        height: 100%;
+        opacity: 0.15;
+        background: var(--color-up);
+    }
+    .up{
+        background: var(--color-up);
+    }
+    .down{
+        background: var(--color-down);
+    }
+}

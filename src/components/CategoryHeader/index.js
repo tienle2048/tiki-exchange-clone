@@ -7,7 +7,7 @@ import TickerItem from './TickerItem'
 
 const cx = classNames.bind(style)
 
-let data=[150,-0.1,200,100,1000000]
+let data=[150,-0.1,200,100,'1.000.000']
 
 function CateloryHeader() {
     return ( 
