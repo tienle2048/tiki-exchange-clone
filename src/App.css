@@ -12,9 +12,21 @@ body{
 .okla5{
   background-color: rgb(73, 42, 54);
 }
-.okla6{
-  background-color: rgb(114, 36, 69);
-}
 .okla7{
   background-color: rgb(209, 219, 114);
+}
+
+.drag-handle{
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  cursor: move;
+  z-index: 10;
+  height: 12px;
+  width: 12px;
+  font-size: 0px;
+}
+
+.drag-handle img{
+  width: 100%;
 }

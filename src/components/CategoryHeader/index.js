@@ -2,6 +2,7 @@ import classNames from 'classnames/bind'
 import style from './CateloryHeader.module.scss'
 
 import astra from '../../assets/images/astra.png'
+import handle from '../../assets/svg/arrows-up-down-left-right-solid.svg'
 
 import TickerItem from './TickerItem'
 
@@ -11,6 +12,10 @@ let data=[150,-0.1,200,100,'1.000.000']
 
 function CateloryHeader() {
     return ( 
+        <>
+        <span className='drag-handle'>
+            <img src={handle} alt='handle'></img>
+        </span>
         <div className={cx('wrapper')}> 
             <div className={cx('token')}>
                 <div className={cx('token-logo')}>
@@ -28,6 +33,7 @@ function CateloryHeader() {
                 <TickerItem title={'KL giao dịch trong 24h'}>{data[4]} Astra</TickerItem>
             </div>
         </div>
+        </>
      );
 }
 

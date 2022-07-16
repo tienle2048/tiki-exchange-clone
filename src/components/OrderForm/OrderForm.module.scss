@@ -1,0 +1,122 @@
+.wrapper {
+    color: hsla(0, 0%, 100%, .85);
+    font-size: 16px;
+    background: var(--dark-bg);
+    height: 100%;
+
+    .tab-nav {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 46px;
+        border-bottom: 1px solid #303030;
+    }
+}
+
+.tab-nav-list {
+    display: flex;
+    flex-direction: row;
+
+
+    .market-order {
+        padding: 12px 16px;
+        cursor: pointer;
+
+    }
+
+    .limit-order {
+        padding: 12px 16px;
+        cursor: pointer;
+    }
+
+    .tab-bar-animate {
+        bottom: 0;
+        height: 2px;
+        position: absolute;
+        background: #177ddc;
+        pointer-events: none;
+    }
+
+    .market {
+        left: 0px;
+        width: 115px;
+    }
+
+    .limit {
+        left: 115px;
+        width: 96px;
+    }
+}
+
+.order-form {
+    display: flex;
+    flex-direction: row;
+
+    .buy-form {
+        width: 50%;
+        height: 100%;
+        padding: 12px 32px;
+
+        .price-buy {
+            box-sizing: border-box;
+            margin: 4px;
+            min-width: 0px;
+            display: inline-flex;
+            position: relative;
+            align-items: center;
+            line-height: 1.6;
+            border: 1px solid rgba(43, 47, 54, 0.8);
+            border-radius: 4px;
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+            background-color: var(--gray-1);
+
+            .label {
+                flex-shrink: 0;
+                margin-left: 8px;
+                min-width: 40px;
+                font-size: 16px;
+                color: rgb(183, 189, 198);
+            }
+
+            input {
+                opacity: 1;
+                border: none !important;
+                height: 100%;
+                width: 100%;
+                padding: 0 4px;
+                text-align: right;
+                outline: none;
+                background-color: inherit;
+                -webkit-appearance: none;
+            }
+
+        }
+
+        .previewAmount {
+            display: flex;
+            flex-direction: row;
+            margin: 4px;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    .sell-form {
+        width: 50%;
+        height: 100%;
+    }
+}
+
+.logo-token {
+    height: 24px;
+    width: 24px;
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+
+    img {
+        height: 100%;
+    }
+}

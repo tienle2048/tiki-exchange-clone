@@ -4,8 +4,11 @@ import styles from './OrderBook.module.scss'
 import defaul from '../../assets/svg/defaul.svg'
 import buy from '../../assets/svg/buy.svg'
 import sell from '../../assets/svg/sell.svg'
+import handle from '../../assets/svg/arrows-up-down-left-right-solid.svg'
 
 import OrderItem from './OrderItem';
+
+
 
 const cx = classNames.bind(styles)
 
@@ -45,6 +48,10 @@ function OrderBook() {
 
 
     return (
+        <>
+        <span className='drag-handle'>
+            <img src={handle} alt='handle'></img>
+        </span>
         <div className={cx('wrapper')}>
             <div className={cx('orderbook-header')}>
                 <div>Sổ lệnh</div>
@@ -80,6 +87,7 @@ function OrderBook() {
 
 
         </div>
+        </>
     );
 }
 
