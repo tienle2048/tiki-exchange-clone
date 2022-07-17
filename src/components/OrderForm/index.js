@@ -2,6 +2,7 @@ import classNames from 'classnames/bind'
 import style from './OrderForm.module.scss'
 
 import astra from '../../assets/images/astra.png'
+import tikixu from '../../assets/svg/tikixu.svg'
 
 import handle from '../../assets/svg/arrows-up-down-left-right-solid.svg'
 
@@ -28,11 +29,11 @@ function OrderForm() {
                             <div className={cx('label')}>Giá</div>
                             <input type='text' ></input>
                             <div className={cx('logo-token')}>
-                                <img src={astra} alt='logo'></img>
+                                <img src={tikixu} alt='logo'></img>
                             </div>
                         </div>
                         <div className={cx('price-buy')}>
-                            <div className={cx('label')}>Giá</div>
+                            <div className={cx('label')}>KL</div>
                             <input type='text' ></input>
                             <div className={cx('logo-token')}>
                                 <img src={astra} alt='logo'></img>
@@ -40,18 +41,41 @@ function OrderForm() {
                         </div>
                         <div className={cx('volume-slider-buy')}></div>
                         <div className={cx('previewAmount')}>
-                            <div>Số lượng astra ước tính nhận được:</div>
+                            <div>Số lượng Xu cần thiết :</div>
                             <div>1000</div>
                             <div className={cx('logo-token')}>
-                                <img src={astra} alt='logo astra'></img>
+                                <img src={tikixu} alt='logo astra'></img>
                             </div>
                         </div>
-                        <div className={cx('buy-button')}>
-                            <button>dada</button>
-                        </div>
+                        
+                        <button className={cx('buy-button-buy')}>Mua</button>
+                        
                     </div>
-                    <div className={cx('sell-form')}>
-                        sell
+                    <div className={cx('buy-form')}>
+                    <div className={cx('price-buy')}>
+                            <div className={cx('label')}>Giá</div>
+                            <input type='text' ></input>
+                            <div className={cx('logo-token')}>
+                                <img src={tikixu} alt='logo'></img>
+                            </div>
+                        </div>
+                        <div className={cx('price-buy')}>
+                            <div className={cx('label')}>KL</div>
+                            <input type='text' ></input>
+                            <div className={cx('logo-token')}>
+                                <img src={astra} alt='logo'></img>
+                            </div>
+                        </div>
+                        <div className={cx('volume-slider-buy')}></div>
+                        <div className={cx('previewAmount')}>
+                            <div>Số lượng Xu ước tính nhận được:</div>
+                            <div>1000</div>
+                            <div className={cx('logo-token')}>
+                                <img src={tikixu} alt='logo astra'></img>
+                            </div>
+                        </div>
+                        
+                        <button className={cx('buy-button-sell')}>Bán</button>
                     </div>
                 </div>
             </div>

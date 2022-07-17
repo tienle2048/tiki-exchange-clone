@@ -120,3 +120,18 @@
         height: 100%;
     }
 }
+
+.buy-button-buy{
+    width: 100%;
+    background: var(--color-up);
+    font-size: 16px;
+    height: 46px;
+    border-radius: 4px;
+}
+.buy-button-sell{
+    width: 100%;
+    background: var(--color-down);
+    font-size: 16px;
+    height: 46px;
+    border-radius: 4px;
+}
