@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 8px;
+    grid-template-rows: fit-content(70px) minmax(0px, 1fr);
+    padding: var(--side-padding);
+    background-color: var(--dark-bg);
+}
+
+.chart-content {
+    height: 100%;
+    width: 100%;
+
+    .chart-container {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+
+.chart-header {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .chart-option {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+
+        .chart-option-item {
+            border-radius: 4px;
+            color: var(--gray-30);
+            font-size: 12px;
+            font-weight: 500;
+            height: fit-content;
+            line-height: 16px;
+            padding: 4px 8px;
+        }
+
+        .active {
+            color: white;
+            background: var(--gray-1);
+        }
+    }
+}
