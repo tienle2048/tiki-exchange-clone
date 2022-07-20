@@ -1,4 +1,4 @@
-body{
+#root{
   background-color: black;
 }
 
@@ -6,9 +6,6 @@ body{
   z-index: 1;
 }
 
-.okla5{
-  background-color: rgb(73, 42, 54);
-}
 .okla7{
   background-color: rgb(209, 219, 114);
 }
