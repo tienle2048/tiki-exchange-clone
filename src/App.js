@@ -1,13 +1,19 @@
 import './App.css';
 import "react-resizable/css/styles.css";
 
-import { CategoryHeader, Chart, Header, OrderBook, OrderForm, Orders, Trades } from './components'
+import { CategoryHeader, Chart, Header, OrderBook, OrderForm, Orders, Trades ,Login } from './components'
 
 import { Responsive, WidthProvider } from "react-grid-layout";
 
 
 
 function App() {
+  if (true)return <Login/>
+
+
+
+
+
   const ResponsiveGridLayout = WidthProvider(Responsive);
 
   let layouts = [

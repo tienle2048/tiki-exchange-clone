@@ -28,7 +28,7 @@ function OrderForm() {
         }
     }
     const changeVolumeSell = (newValue) => {
-        if (newValue === "") setVolumeBuy(newValue)
+        if (newValue === "") setVolumeSell(newValue)
         else {
             newValue = Number(newValue)
             if (!isNaN(newValue)) setVolumeSell(newValue)
