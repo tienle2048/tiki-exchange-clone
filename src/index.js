@@ -5,12 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/GlobalStyles'
 
+import { Provider } from 'react-redux'
+import {store} from './store'
+
+
 ReactDOM.render(
-  <React.StrictMode>
-  <GlobalStyles>
-    <App />
-  </GlobalStyles>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <GlobalStyles>
+      <App />
+    </GlobalStyles>
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,12 +1,24 @@
 import classNames from "classnames/bind"
 import styles from "./Login.module.scss"
 import {useState} from 'react'
+//import {userServices} from '../../services'
+
+import {useDispatch} from 'react-redux'
+import {userActions} from "../../actions/user"
 
 const cx =classNames.bind(styles)
 
 function Login() {
     const [Email,setEmail] =useState("")
     const [Pass,setPass] =useState("")
+
+    const dispatch= useDispatch()
+    
+    //()=>userServices.login("0967783859",'123456789')
+
+    const handelLogin=()=>{
+        dispatch(userActions.login(Email,Pass))
+    }
 
     return (
         <div className={cx('wrapper')}>
@@ -23,7 +35,7 @@ function Login() {
                         <div className={cx('input',{'input-fill':Pass!==""})}>
                             <input type="password" placeholder="Mật khẩu" value={Pass} onChange={(e)=>setPass(e.target.value)}></input>
                         </div>
-                        <button>Đăng nhập</button>
+                        <button onClick={handelLogin}>Đăng nhập</button>
                     </div>
                 </div>
                 <div className={cx('right')}>

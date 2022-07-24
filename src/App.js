@@ -4,11 +4,14 @@ import "react-resizable/css/styles.css";
 import { CategoryHeader, Chart, Header, OrderBook, OrderForm, Orders, Trades ,Login } from './components'
 
 import { Responsive, WidthProvider } from "react-grid-layout";
+import { useSelector} from "react-redux"
 
 
 
 function App() {
-  if (true)return <Login/>
+  const islogin =useSelector(state => state.authen.isLogin)
+  console.log(islogin)
+  if (!islogin)return <Login/>
 
 
 
