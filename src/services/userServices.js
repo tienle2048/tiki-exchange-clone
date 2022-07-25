@@ -17,14 +17,18 @@ const login = (username, password) => {
     }
     return axios(options)
         .then(response=>{
+            console.log('then in service')
             let user = response.data
             if (user.access_token){
                 localStorage.setItem('user', JSON.stringify(user));
             }
             return user
         })
-        .catch(function (error) {
-            console.log(error.response.data);
+        .catch(error=>{
+            console.log('catch in service')
+            console.log(error.response.data)
+            return Promise.reject(error.response.data);
+            
         })
 }
 

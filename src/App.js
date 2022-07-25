@@ -10,7 +10,8 @@ import { useSelector} from "react-redux"
 
 function App() {
   const islogin =useSelector(state => state.authen.isLogin)
-  console.log(islogin)
+  const token =useSelector(state => state.authen.user)
+  console.log(islogin,token)
   if (!islogin)return <Login/>
 
 

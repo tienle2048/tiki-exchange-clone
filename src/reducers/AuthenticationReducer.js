@@ -11,8 +11,6 @@ export const authenticationReducer = (state = initialState, action) => {
         isLogin: true,
         user: action.user
       };
-    case userConstants.LOGIN_FAILURE:
-      return {};
     case userConstants.LOGOUT:
       return {};
     default:

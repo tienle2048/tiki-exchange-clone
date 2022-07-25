@@ -3,7 +3,7 @@ import styles from "./Login.module.scss"
 import {useState} from 'react'
 //import {userServices} from '../../services'
 
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {userActions} from "../../actions/user"
 
 const cx =classNames.bind(styles)
@@ -13,12 +13,17 @@ function Login() {
     const [Pass,setPass] =useState("")
 
     const dispatch= useDispatch()
+
+
     
-    //()=>userServices.login("0967783859",'123456789')
+    
+    const errorMess= useSelector(state=>state.alert)
+    
 
     const handelLogin=()=>{
         dispatch(userActions.login(Email,Pass))
     }
+    
 
     return (
         <div className={cx('wrapper')}>
@@ -35,6 +40,7 @@ function Login() {
                         <div className={cx('input',{'input-fill':Pass!==""})}>
                             <input type="password" placeholder="Mật khẩu" value={Pass} onChange={(e)=>setPass(e.target.value)}></input>
                         </div>
+                        {errorMess.isalert&& <span className={cx('error-mess')}>{errorMess.message}</span>}
                         <button onClick={handelLogin}>Đăng nhập</button>
                     </div>
                 </div>
