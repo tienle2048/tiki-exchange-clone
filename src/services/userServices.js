@@ -3,7 +3,7 @@ import FormData from 'form-data'
 
 const login = (username, password) => {
     const data = new FormData();
-    data.append('device_id', 'b801c965-63b8-51d0-fa15-b35e75c73afb');
+    data.append('device_id', '52e8a760-0115-b930-a15c-7e41bdda2641');
     data.append('email', username);
     data.append('grant_type', 'password');
     data.append('is_sso', 'true');
@@ -17,7 +17,6 @@ const login = (username, password) => {
     }
     return axios(options)
         .then(response=>{
-            console.log('then in service')
             let user = response.data
             if (user.access_token){
                 localStorage.setItem('user', JSON.stringify(user));
@@ -25,10 +24,7 @@ const login = (username, password) => {
             return user
         })
         .catch(error=>{
-            console.log('catch in service')
-            console.log(error.response.data)
             return Promise.reject(error.response.data);
-            
         })
 }
 

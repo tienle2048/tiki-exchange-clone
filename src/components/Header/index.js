@@ -11,19 +11,38 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import Tippy from '@tippyjs/react';
 
 import {useDispatch,useSelector} from 'react-redux'
+import { useEffect } from 'react';
 
 import {userActions} from "../../actions/user"
+
+
+import { infoAction } from '../../actions/infoUser';
+
 
 
 const cx = classNames.bind(styles)
 function Header() {
 
     const dispatch =useDispatch()
+    const access_token= useSelector(state=>state.authen).user.access_token
+    const data =useSelector(state=>state.info)
+    let info=data.info
+    let property =data.property
+    
+    //console.log(access_token)
 
     const handleLogout = ()=>{
         dispatch(userActions.logout())
     }
 
+    
+        
+    useEffect(()=>{
+        dispatch(infoAction.info(access_token))
+        dispatch(infoAction.property(access_token))
+    })
+
+    
     return (
         <div className={cx('wrapper')}>
             <div className={cx('left')}>
@@ -39,12 +58,12 @@ function Header() {
                 <div className={cx('label')}>Tài sản của tôi:</div>
                 <div className={cx('astra')}>
                     <img src={astra} alt='logo'></img>
-                    <div>1000</div>
+                    <div>{property.balances ?property.balances[0].balance:'0'}</div>
                 </div>
                 <div className={cx('okla')}></div>
                 <div className={cx('tikixu')}>
                     <img src={astra} alt='logo'></img>
-                    <div>1000</div>
+                    <div>{property.balances ?property.balances[1].balance:'0'}</div>
                 </div>
                 <div className={cx('okla')}></div>
                 <Tippy
@@ -55,11 +74,11 @@ function Header() {
                             <ul className={cx('dropdown')}>
                                 <li className={cx('userinfo')}>
                                     <div className={cx('avatar')}>
-                                        <img src={astra} alt='logo'></img>
+                                        <img src={info.avatar_url} alt='logo'></img>
                                     </div>
                                     <div>
-                                        <div>tien le </div>
-                                        <div>leviettien456789@gmail.com</div>
+                                        <div>{info.name}</div>
+                                        <div>{info.email}</div>
                                     </div>
                                 </li>
                                 <li className={cx('bar')}></li>
@@ -72,7 +91,7 @@ function Header() {
                         <FontAwesomeIcon className={cx('user')} icon={faUser} />
                     </div>
                 </Tippy>
-                <div className={cx('icon')}>
+                <div className={cx('icon')} >
                     <FontAwesomeIcon className={cx('setting')} icon={faGear} />
                 </div>
 
