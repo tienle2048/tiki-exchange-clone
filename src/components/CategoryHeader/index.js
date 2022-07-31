@@ -44,7 +44,6 @@ function CateloryHeader() {
         }
     },[dataPrice])
 
-    console.log('re-render')
 
     return (
         <>
@@ -62,7 +61,7 @@ function CateloryHeader() {
 
                 <div className={cx('ticker-list')}>
                     <TickerItem title={'Giá Gần Nhất'}>{dataPrice.last} Xu</TickerItem>
-                    <TickerItem title={'Thay Đổi 24h'} color={'red'}>{dataPrice.price_change_percent}</TickerItem>
+                    <TickerItem title={'Thay Đổi 24h'} color={dataPrice!==''&&dataPrice.price_change_percent[0]==='-'?'red':'green'}>{dataPrice.price_change_percent}</TickerItem>
                     <TickerItem title={'24h Cao'}>{dataPrice.high} Xu</TickerItem>
                     <TickerItem title={'24h Thấp'}>{dataPrice.low} Xu</TickerItem>
                     <TickerItem title={'KL giao dịch trong 24h'}>{dataPrice.volume} Astra</TickerItem>

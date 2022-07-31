@@ -1,12 +1,11 @@
 .wrapper {
     background: var(--dark-bg);
-    display: grid;
-    grid-template-rows: fit-content(48px) minmax(0px, 1fr);
+    display: flex;
     row-gap: 16px;
     padding: var(--side-padding);
     height: 100%;
     font-size: 14px;
-
+    flex-direction: column;
 
 }
 
@@ -19,7 +18,8 @@
 .actions {
     display: flex;
     flex-direction: row;
-    
+    cursor: pointer;
+
 
     .action {
         height: 16px;
@@ -32,17 +32,23 @@
     }
 }
 
-
-.label {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 12px;
-    margin-bottom: 4px;
-}
-
-.orderlist {
+.content {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+
+    .label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .orderlist {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        gap: 14px;
+    }
 }

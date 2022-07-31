@@ -2,21 +2,26 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     height: 24px;
     padding: 4px 0px;
     align-items: center;
 
     .price-up{
+        flex-grow: 1;
         color: var(--color-up);
     }
     .price-down{
+        width: 30%;
         color:var(--color-down);
     }
     .volume{
+        text-align: right;
+        width: 30%;
         color: var(--gray-20);
     }
     .total{
+        text-align: right;
+        width: 40%;
         color: var(--gray-20);
     }
 
