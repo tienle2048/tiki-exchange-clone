@@ -18,26 +18,21 @@ const cx = classNames.bind(styles)
 let asks = []
 let bids = []
 
-
-
-
 function OrderBook() {
     const orderList = useRef()
     const webSocket = useRef(null);
     const [bidsRender, setBidsRender] = useState([])
     const [asksRender, setAsksRender] = useState([])
-    const [buyValue,setBuyValue] =useState(15)
-    const [sellValue,setSellValue] = useState(15)
-    //let buyValue=15
-    //let sellValue=15
+    const [buyValue, setBuyValue] = useState(15)
+    const [sellValue, setSellValue] = useState(15)
 
     const updateData = (newdata) => {
         if (newdata.bids) {
             for (let i = 0; i < bids.length; i++) {
                 //console.log(parseInt(newdata.bids[0]), parseInt(bids[i][0]))
                 if (parseInt(newdata.bids[0]) === parseInt(bids[i][0])) {
-                    if (newdata.bids[1] == "") {
-                        let x = bids.splice(0, i+1)
+                    if (newdata.bids[1] === '') {
+                        let x = bids.splice(0, i + 1)
                         x.pop()
                         bids = x.concat(bids)
                     }
@@ -54,12 +49,12 @@ function OrderBook() {
                 }
             }
         }
-        else{
+        else {
             for (let i = 0; i < asks.length; i++) {
                 //console.log(parseInt(newdata.bids[0]), parseInt(bids[i][0]))
                 if (parseInt(newdata.asks[0]) === parseInt(asks[i][0])) {
                     if (newdata.asks[1] === "") {
-                        let x = asks.splice(0, i+1)
+                        let x = asks.splice(0, i + 1)
                         x.pop()
                         asks = x.concat(asks)
                     }
@@ -94,43 +89,54 @@ function OrderBook() {
     }, []);
 
     useEffect(() => {
-        setBidsRender(bids.slice(0,buyValue))
-        setAsksRender(asks.slice(0,sellValue))
+        setBidsRender(bids.slice(0, buyValue))
+        setAsksRender(asks.slice(0, sellValue))
         webSocket.current.onmessage = (event) => {
             let data
             data = JSON.parse(event.data)['asaxu.ob-snap']
             if (data) {
                 asks = data.asks
                 bids = data.bids
+                setBidsRender(bids.slice(0, buyValue))
+                setAsksRender(asks.slice(0, sellValue))
             }
             else {
                 data = JSON.parse(event.data)['asaxu.ob-inc']
                 if (data) {
-                    console.log(buyValue,sellValue)
+                    console.log(buyValue, sellValue)
                     updateData(data)
-                    if (data.bids) setBidsRender(bids.slice(0,buyValue))
-                    else setAsksRender(asks.slice(0,sellValue))
+                    if (data.bids) setBidsRender(bids.slice(0, buyValue))
+                    else setAsksRender(asks.slice(0, sellValue))
+                    
                 }
             }
             //console.log(data)
         }
-    }, [buyValue,sellValue])
+    }, [buyValue, sellValue])
 
-    const handleAll=()=>{
+
+    useEffect(()=>{
+        setInterval(() => {
+            webSocket.current.send('ping')
+        }, 30000);
+        
+    },[])
+
+    const handleAll = () => {
         setSellValue(15)
         setBuyValue(15)
-        console.log(buyValue,sellValue)
+        console.log(buyValue, sellValue)
     }
 
-    const handleBuy=()=>{
+    const handleBuy = () => {
         setBuyValue(30)
         setSellValue(0)
-        console.log(buyValue,sellValue)
+        console.log(buyValue, sellValue)
     }
-    const handleSell=()=>{
+    const handleSell = () => {
         setSellValue(30)
         setBuyValue(0)
-        console.log(buyValue,sellValue)
+        console.log(buyValue, sellValue)
     }
 
     console.log('re-render')
@@ -159,13 +165,13 @@ function OrderBook() {
                     <div className={cx('orderlist')} ref={orderList}>
                         <div className={cx('item')} >
                             {bidsRender.map((item, index) =>
-                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1])/2000}%`} up key={index} />
+                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1]) / 2000}%`} up key={index} />
                             )}
                         </div>
 
                         <div className={cx('item')} >
                             {asksRender.map((item, index) =>
-                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1])/2000}%`} down key={index} />
+                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1]) / 2000}%`} down key={index} />
                             )}
                         </div>
                     </div>

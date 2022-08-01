@@ -42,7 +42,7 @@ function CateloryHeader() {
             setDataPrice(data)
            // console.log(lastPrice,highPrice,lowPrice,changePercent,volume)
         }
-    },[dataPrice])
+    },[])
 
 
     return (

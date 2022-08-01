@@ -12,6 +12,7 @@
 .chart-content {
     height: 100%;
     width: 100%;
+    position: relative;
 
     .chart-container {
         height: 100%;
@@ -48,4 +49,16 @@
             background: var(--gray-1);
         }
     }
+}
+
+.info{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    z-index: 9;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.45);
 }
