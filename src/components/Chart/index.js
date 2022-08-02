@@ -14,6 +14,29 @@ import { getDateChart } from "../../services/ChartServices";
 const cx = classNames.bind(styles)
 
 
+
+function InfoCandle({ dataInfo }) {
+
+    //console.log('re-render infocandle')
+    const [data, setData] = useState([])
+    useEffect(() => {
+        dataInfo(setData)
+    }, [dataInfo, data])
+
+    return (
+        <div className={cx("info")}>
+            <div>{data[0]}</div>
+            <div>mở {data[1]}</div>
+            <div>Đóng {data[2]}</div>
+            <div>Cao {data[3]}</div>
+            <div>Thấp {data[4]}</div>
+            <div>Khối lượng {data[5]}</div>
+        </div>
+    );
+}
+
+
+
 function Chart() {
 
     const webSocket = useRef(null);
@@ -22,8 +45,12 @@ function Chart() {
     const resizeObserver = useRef();
     const [priceData, setpriceData] = useState([])
     const [volumeData, setvolumeData] = useState([])
-    const [detailData, setdetailData] = useState([])
+    const PreDetailData = useRef([])
+    let setDataFromChild = null
 
+    const childData = (dataFromChild) => {
+        setDataFromChild = dataFromChild
+    }
 
     useEffect(() => {
         getDateChart.period5m()
@@ -133,7 +160,12 @@ function Chart() {
                 //console.log(close)
                 let volume = param.seriesPrices.get(volumeSeries)
                 let time = param.time
-                if ([time, open, close, high, low, volume] !== detailData) setdetailData([time, open, close, high, low, volume])
+                //console.log(PreDetailData.current,[time, open, close, high, low, volume],[time, open, close, high, low, volume] !== PreDetailData.current)
+                if (JSON.stringify([time, open, close, high, low, volume]) !== JSON.stringify(PreDetailData.current)) {
+                    PreDetailData.current=[time, open, close, high, low, volume]
+                    
+                    setDataFromChild([time, open, close, high, low, volume])
+                }
             }
             /* console.log(
                 param.seriesPrices.get(candleSeries),
@@ -199,7 +231,8 @@ function Chart() {
         getDateChart.period1w() */
     }
 
-    //console.log('re-render chart')
+    console.log('re-render chart')
+
 
     return (
         <>
@@ -219,14 +252,7 @@ function Chart() {
                     </div>
                 </div>
                 <div className={cx("chart-content")}>
-                    <div className={cx("info")}>
-                        <div>{detailData[0]}</div>
-                        <div>mở {detailData[1]}</div>
-                        <div>Đóng {detailData[2]}</div>
-                        <div>Cao {detailData[3]}</div>
-                        <div>Thấp {detailData[4]}</div>
-                        <div>Khối lượng {detailData[5]}</div>
-                    </div>
+                    <InfoCandle dataInfo={childData} />
                     <div ref={chartContainerRef} className={cx("chart-container")} />
                 </div>
             </div>
