@@ -21,6 +21,8 @@ let bids = []
 function OrderBook() {
     const orderList = useRef()
     const webSocket = useRef(null);
+    const maxBids=useRef(0)
+    const maxAsks=useRef(0)
     const [bidsRender, setBidsRender] = useState([])
     const [asksRender, setAsksRender] = useState([])
     const [buyValue, setBuyValue] = useState(15)
@@ -72,6 +74,18 @@ function OrderBook() {
             }
         }
     }
+    const setMax=(bids,asks)=>{
+        for(let i=0;i<buyValue;i++){
+            if (parseInt(bids[i][1]) > maxBids.current) maxBids.current=parseInt(bids[i][1])
+        }
+        for(let i=0;i<sellValue;i++){
+            if (parseInt(asks[i][1]) > maxAsks.current) maxAsks.current=parseInt(asks[i][1])
+        }
+    }
+    const resetMax=()=>{
+        maxBids.current=0
+        maxAsks.current=0
+    }
 
     useEffect(() => {
         console.log('Opening WebSocket');
@@ -89,11 +103,11 @@ function OrderBook() {
     }, []);
 
     useEffect(() => {
+        if(bids[0]) setMax(bids.slice(0, buyValue),asks.slice(0, sellValue))
         setBidsRender(bids.slice(0, buyValue))
         setAsksRender(asks.slice(0, sellValue))
         webSocket.current.onmessage = (event) => {
-            let data
-            data = JSON.parse(event.data)['asaxu.ob-snap']
+            let data = JSON.parse(event.data)['asaxu.ob-snap']
             if (data) {
                 asks = data.asks
                 bids = data.bids
@@ -105,6 +119,8 @@ function OrderBook() {
                 if (data) {
                     //console.log(buyValue, sellValue)
                     updateData(data)
+                    setMax(bids.slice(0, buyValue),asks.slice(0, sellValue))
+                    console.log(maxAsks.current)
                     if (data.bids) setBidsRender(bids.slice(0, buyValue))
                     else setAsksRender(asks.slice(0, sellValue))
                     
@@ -119,21 +135,23 @@ function OrderBook() {
         setInterval(() => {
             webSocket.current.send('ping')
         }, 30000);
-        
     },[])
 
     const handleAll = () => {
+        resetMax()
         setSellValue(15)
         setBuyValue(15)
         //console.log(buyValue, sellValue)
     }
 
     const handleBuy = () => {
+        resetMax()
         setBuyValue(30)
         setSellValue(0)
         //console.log(buyValue, sellValue)
     }
     const handleSell = () => {
+        resetMax()
         setSellValue(30)
         setBuyValue(0)
         //log(buyValue, sellValue)
@@ -165,13 +183,13 @@ function OrderBook() {
                     <div className={cx('orderlist')} ref={orderList}>
                         <div className={cx('item')} >
                             {bidsRender.map((item, index) =>
-                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1]) / 2000}%`} up key={index} />
+                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1])*60 / maxBids.current}%`} up key={index} />
                             )}
                         </div>
 
                         <div className={cx('item')} >
                             {asksRender.map((item, index) =>
-                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1]) / 2000}%`} down key={index} />
+                                <OrderItem price={item[0]} volume={item[1]} percent={`${parseInt(item[1])*60 / maxAsks.current}%`} down key={index} />
                             )}
                         </div>
                     </div>
