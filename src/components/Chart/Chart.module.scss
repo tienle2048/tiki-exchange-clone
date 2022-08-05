@@ -61,4 +61,12 @@
     z-index: 9;
     font-size: 12px;
     background: rgba(0, 0, 0, 0.45);
+    .red{
+        color: var(--color-down);
+        display: inline-block;
+    }
+    .green{
+        color: var(--color-up);
+        display: inline-block;
+    }
 }

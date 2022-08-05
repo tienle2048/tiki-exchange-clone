@@ -103,7 +103,7 @@ function OrderBook() {
             else {
                 data = JSON.parse(event.data)['asaxu.ob-inc']
                 if (data) {
-                    console.log(buyValue, sellValue)
+                    //console.log(buyValue, sellValue)
                     updateData(data)
                     if (data.bids) setBidsRender(bids.slice(0, buyValue))
                     else setAsksRender(asks.slice(0, sellValue))
@@ -125,21 +125,21 @@ function OrderBook() {
     const handleAll = () => {
         setSellValue(15)
         setBuyValue(15)
-        console.log(buyValue, sellValue)
+        //console.log(buyValue, sellValue)
     }
 
     const handleBuy = () => {
         setBuyValue(30)
         setSellValue(0)
-        console.log(buyValue, sellValue)
+        //console.log(buyValue, sellValue)
     }
     const handleSell = () => {
         setSellValue(30)
         setBuyValue(0)
-        console.log(buyValue, sellValue)
+        //log(buyValue, sellValue)
     }
 
-    console.log('re-render')
+    //console.log('re-render')
 
 
     return (
