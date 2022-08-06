@@ -1,0 +1,44 @@
+.ant-tabs-top>.ant-tabs-nav:before {
+    border-bottom: 1px solid #303030;
+}
+
+.ant-tabs-tab {
+    padding: 12px 16px;
+}
+
+.ant-tabs-tab+.ant-tabs-tab {
+    margin: 0;
+}
+
+.ant-table {
+    background-color: transparent;
+}
+
+.ant-table-thead>tr>th {
+    background-color: transparent;
+    color: aliceblue;
+    border-bottom: none;
+}
+
+.ant-table-tbody>tr.ant-table-row:hover>td {
+    background: none !important;
+}
+
+.ant-table-tbody>tr>td {
+    border: none;
+}
+.ant-table table{
+    border-collapse: collapse;
+}
+
+.ant-table-body::-webkit-scrollbar {
+    display: none;
+}
+
+tr.ant-table-expanded-row:hover>td, tr.ant-table-expanded-row>td {
+    background: transparent;
+}
+
+.ant-progress-text{
+    color: aliceblue;
+}

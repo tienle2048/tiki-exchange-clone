@@ -24,9 +24,9 @@ function App() {
     { i: "category", x: 2, y: 0, w: 8, h: 1 },
     { i: "chart", x: 2, y: 0, w: 8, h: 9 },
     { i: "book", x: 0, y: 0, w: 2, h: 15 },
-    { i: "orders", x: 10, y: 10, w: 12, h: 4 },
+    { i: "orders", x: 0, y: 15, w: 10, h: 5 },
     { i: "form", x: 2, y: 0, w: 8, h: 5 },
-    { i: "trader", x: 12, y: 0, w: 2, h: 15 }
+    { i: "trader", x: 12, y: 0, w: 2, h: 20 }
   ];
 
   const DefaultProps={
