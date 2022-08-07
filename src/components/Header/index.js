@@ -40,7 +40,7 @@ function Header() {
     useEffect(()=>{
         dispatch(infoAction.info(access_token))
         dispatch(infoAction.property(access_token))
-    })
+    },[])
 
     
     return (

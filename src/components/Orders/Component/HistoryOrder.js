@@ -1,4 +1,7 @@
-import { Table } from 'antd'
+import { Table, Tag } from 'antd'
+import { orderService } from '../../../services/OrderTable';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux'
 
 const columns =
     [
@@ -10,7 +13,15 @@ const columns =
         {
             title: 'Loại giao dịch',
             dataIndex: 'type',
-            key: 'type'
+            key: 'type',
+            render(text, record) {
+                return {
+                    props: {
+                        style: { color: text === 'bán' ? "#FF424E" : "#2DC26D" }
+                    },
+                    children: text
+                };
+            }
         },
         {
             title: 'Số lượng',
@@ -29,78 +40,94 @@ const columns =
         },
         {
             title: 'Trạng thái',
-            dataIndex: 'status',
-            key: 'status',
+            dataIndex: 'tags',
+            key: 'tags',
+            render: (_, { tags }) => (
+                <>
+                    {tags.map((tag) => {
+                        let color
+
+                        if (tag === 'Đã hủy') {
+                            color = 'white';
+                        }
+                        if (tag === 'khớp') {
+                            color = '#2DC26D';
+                        }
+                        if (tag === 'khớp 1 phần') {
+                            color = '#FFC400';
+                        }
+
+                        return (
+                            <Tag color={'#303341'} style={{ color: color, padding: '4px 6px', fontSize: '12px' }} key={tag}>
+                                {tag}
+                            </Tag>
+                        );
+                    })}
+                </>
+            ),
             filters: [
                 {
-                  text: 'hủy',
-                  value: 'hủy',
+                    text: 'Đã hủy',
+                    value: 'Đã hủy',
                 },
                 {
-                  text: 'khớp',
-                  value: 'khớp',
+                    text: 'khớp',
+                    value: 'khớp',
                 },
                 {
                     text: 'khớp 1 phần',
                     value: 'khớp 1 phần',
-                  }
-              ],
-              onFilter: (value, record) => record.status.startsWith(value)
+                }
+            ],
+            onFilter: (value, record) => record.tags[0] === value
         }
 
     ];
 
-const data = [
-    {
-        key: '1',
-        time: '12h',
-        type: 'ban',
-        amount: '100',
-        price: '200',
-        success:'50',
-        status: 'hủy'
-    },
-    {
-        key: '2',
-        time: '12h',
-        type: 'ban',
-        amount: '100',
-        price: '200',
-        success:'50',
-        status: 'khớp'
-    },
-    {
-        key: '3',
-        time: '12h',
-        type: 'ban',
-        amount: '100',
-        price: '200',
-        success:'50',
-        status: 'khớp 1 phần'
-    },
-    {
-        key: '4',
-        time: '12h',
-        type: 'ban',
-        amount: '100',
-        price: '200',
-        success:'50',
-        status: 'khớp'
-    }
-];
-
 function HistoryOrder() {
-    return ( 
-            <div >
+    const access_token = useSelector(state => state.authen).user.access_token
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        orderService.historyOrder(access_token)
+            .then((response) => {
+                let data = response.data
+                data = data.map((item) => {
+                    let state = []
+                    if (item.state === 'done') state = ["khớp"]
+                    else if (parseInt(item.origin_volume) - parseInt(item.remaining_volume) > 0) state = ["khớp 1 phần"]
+                    else state = ["Đã hủy"]
+
+                    return {
+                        key: item.id,
+                        color: 'red',
+                        time: item.created_at,
+                        type: item.side === 'sell' ? 'bán' : 'mua',
+                        amount: item.origin_volume,
+                        price: item.price,
+                        success: parseInt(item.origin_volume) - parseInt(item.remaining_volume),
+                        tags: state
+                    }
+                })
+                setData(data)
+                console.log(data)
+            })
+            .catch((error) => {
+                console.log('loi', error)
+            })
+    }, [])
+    return (
+        <div >
             <Table
                 scroll={{ y: 140 }}
-                expandedRowRender= {(record) => <p>{'ddawdawdw'}</p>}
+                expandedRowRender={(record) => <p>{'ddawdawdw'}</p>}
                 columns={columns}
                 dataSource={data}
-                pagination={{ position: ['none'] }}
+                pagination={{ position: ['none'], pageSize: 100 }}
+                rowClassName={"red"}
             />
         </div>
-     );
+    );
 }
 
 export default HistoryOrder;
