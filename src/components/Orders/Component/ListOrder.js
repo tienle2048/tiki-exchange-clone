@@ -11,9 +11,6 @@ function ListOrder() {
     const access_token = useSelector(state => state.authen).user.access_token
     const [data, setData] = useState([])
 
-
-    
-
     const updateDataOrder = () => {
         orderService.myOrder(access_token)
             .then((response) => {
@@ -49,9 +46,10 @@ function ListOrder() {
         console.log(record.key)
     }
     useEffect(() => {
+        updateDataOrder()
         const interval = setInterval(() => {
             updateDataOrder()
-          }, 2000);
+          }, 2000); 
           return () => clearInterval(interval);
     }, [])
 
