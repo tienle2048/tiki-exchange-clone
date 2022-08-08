@@ -22,10 +22,21 @@ const getHistoryOrder =async (accesstoken) => {
     return await axios(options)
 }
 
+const cancelOrder= async (accesstoken,id)=>{
+    let options = {
+        url: `https://api.tiki.vn/sandseel/api/v2/market/orders/${id}/cancel`,
+        method: 'post',
+        headers: {
+            'Authorization': 'Bearer ' + accesstoken
+        }
+    }
+    return await axios(options)
+}
+
 
 
 export const orderService = {
     myOrder:getMyOrder,
-    historyOrder:getHistoryOrder
-
+    historyOrder:getHistoryOrder,
+    cancelOrder:cancelOrder
 }

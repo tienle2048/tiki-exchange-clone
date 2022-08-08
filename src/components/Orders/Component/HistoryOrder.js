@@ -3,92 +3,13 @@ import { orderService } from '../../../services/OrderTable';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 
-const columns =
-    [
-        {
-            title: 'Thời gian',
-            dataIndex: 'time',
-            key: 'time',
-        },
-        {
-            title: 'Loại giao dịch',
-            dataIndex: 'type',
-            key: 'type',
-            render(text, record) {
-                return {
-                    props: {
-                        style: { color: text === 'bán' ? "#FF424E" : "#2DC26D" }
-                    },
-                    children: text
-                };
-            }
-        },
-        {
-            title: 'Số lượng',
-            dataIndex: 'amount',
-            key: 'amount',
-        },
-        {
-            title: 'Giá giao dịch',
-            dataIndex: 'price',
-            key: 'price',
-        },
-        {
-            title: 'KL đã khớp',
-            dataIndex: 'success',
-            key: 'success',
-        },
-        {
-            title: 'Trạng thái',
-            dataIndex: 'tags',
-            key: 'tags',
-            render: (_, { tags }) => (
-                <>
-                    {tags.map((tag) => {
-                        let color
 
-                        if (tag === 'Đã hủy') {
-                            color = 'white';
-                        }
-                        if (tag === 'khớp') {
-                            color = '#2DC26D';
-                        }
-                        if (tag === 'khớp 1 phần') {
-                            color = '#FFC400';
-                        }
-
-                        return (
-                            <Tag color={'#303341'} style={{ color: color, padding: '4px 6px', fontSize: '12px' }} key={tag}>
-                                {tag}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
-            filters: [
-                {
-                    text: 'Đã hủy',
-                    value: 'Đã hủy',
-                },
-                {
-                    text: 'khớp',
-                    value: 'khớp',
-                },
-                {
-                    text: 'khớp 1 phần',
-                    value: 'khớp 1 phần',
-                }
-            ],
-            onFilter: (value, record) => record.tags[0] === value
-        }
-
-    ];
 
 function HistoryOrder() {
     const access_token = useSelector(state => state.authen).user.access_token
     const [data, setData] = useState([])
 
-    useEffect(() => {
+    const updateDataOrder = () => {
         orderService.historyOrder(access_token)
             .then((response) => {
                 let data = response.data
@@ -110,12 +31,101 @@ function HistoryOrder() {
                     }
                 })
                 setData(data)
-                console.log(data)
+                //console.log(data)
             })
             .catch((error) => {
                 console.log('loi', error)
             })
+    }
+
+    useEffect(() => {
+        updateDataOrder()
+        const interval = setInterval(() => {
+            updateDataOrder()
+        }, 2000);
+        return () => clearInterval(interval);
     }, [])
+
+    const columns =
+        [
+            {
+                title: 'Thời gian',
+                dataIndex: 'time',
+                key: 'time',
+            },
+            {
+                title: 'Loại giao dịch',
+                dataIndex: 'type',
+                key: 'type',
+                render(text, record) {
+                    return {
+                        props: {
+                            style: { color: text === 'bán' ? "#FF424E" : "#2DC26D" }
+                        },
+                        children: text
+                    };
+                }
+            },
+            {
+                title: 'Số lượng',
+                dataIndex: 'amount',
+                key: 'amount',
+            },
+            {
+                title: 'Giá giao dịch',
+                dataIndex: 'price',
+                key: 'price',
+            },
+            {
+                title: 'KL đã khớp',
+                dataIndex: 'success',
+                key: 'success',
+            },
+            {
+                title: 'Trạng thái',
+                dataIndex: 'tags',
+                key: 'tags',
+                render: (_, { tags }) => (
+                    <>
+                        {tags.map((tag) => {
+                            let color
+
+                            if (tag === 'Đã hủy') {
+                                color = 'white';
+                            }
+                            if (tag === 'khớp') {
+                                color = '#2DC26D';
+                            }
+                            if (tag === 'khớp 1 phần') {
+                                color = '#FFC400';
+                            }
+
+                            return (
+                                <Tag color={'#303341'} style={{ color: color, padding: '4px 6px', fontSize: '12px' }} key={tag}>
+                                    {tag}
+                                </Tag>
+                            );
+                        })}
+                    </>
+                ),
+                filters: [
+                    {
+                        text: 'Đã hủy',
+                        value: 'Đã hủy',
+                    },
+                    {
+                        text: 'khớp',
+                        value: 'khớp',
+                    },
+                    {
+                        text: 'khớp 1 phần',
+                        value: 'khớp 1 phần',
+                    }
+                ],
+                onFilter: (value, record) => record.tags[0] === value
+            }
+
+        ];
     return (
         <div >
             <Table

@@ -120,7 +120,7 @@ function OrderBook() {
                     //console.log(buyValue, sellValue)
                     updateData(data)
                     setMax(bids.slice(0, buyValue),asks.slice(0, sellValue))
-                    console.log(maxAsks.current)
+                    //console.log(maxAsks.current)
                     if (data.bids) setBidsRender(bids.slice(0, buyValue))
                     else setAsksRender(asks.slice(0, sellValue))
                     

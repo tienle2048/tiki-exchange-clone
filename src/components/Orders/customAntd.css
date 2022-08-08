@@ -28,7 +28,8 @@
 .ant-table-tbody>tr>td {
     border: none;
 }
-.ant-table table{
+
+.ant-table table {
     border-collapse: collapse;
 }
 
@@ -36,11 +37,29 @@
     display: none;
 }
 
-tr.ant-table-expanded-row:hover>td, tr.ant-table-expanded-row>td {
+tr.ant-table-expanded-row:hover>td,
+tr.ant-table-expanded-row>td {
     background: transparent;
 }
 
 .color-text.ant-progress .ant-progress-text {
     color: rgb(255, 255, 255);
-  }
-  
+}
+
+.ant-dropdown-menu {
+    background-color: #1b213a;
+}
+
+.ant-table-filter-dropdown {
+    background-color: #1b213a;
+}
+
+.ant-dropdown-menu-item-selected {
+    background-color: #1b213a;
+}
+.ant-dropdown-menu-item:hover{
+    background-color: #1b213a;
+}
+.ant-table-tbody>tr.ant-table-placeholder:hover>td {
+    background: transparent;
+}
