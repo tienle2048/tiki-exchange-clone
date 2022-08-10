@@ -58,7 +58,7 @@ function Header() {
                 <div className={cx('label')}>Tài sản của tôi:</div>
                 <div className={cx('astra')}>
                     <img src={astra} alt='logo'></img>
-                    <div>{property.balances ?property.balances[0].balance:'0'}</div>
+                    <div>{Math.floor((property.balances ?property.balances[0].balance:'0')*1000)/1000}</div>
                 </div>
                 <div className={cx('okla')}></div>
                 <div className={cx('tikixu')}>
