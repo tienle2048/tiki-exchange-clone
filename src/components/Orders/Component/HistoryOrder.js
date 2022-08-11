@@ -25,7 +25,7 @@ function HistoryOrder() {
                         time: item.created_at,
                         type: item.side === 'sell' ? 'bán' : 'mua',
                         amount: item.origin_volume,
-                        price: item.price,
+                        price: item.price?item.price: "Thị trường",
                         success: parseInt(item.origin_volume) - parseInt(item.remaining_volume),
                         tags: state
                     }

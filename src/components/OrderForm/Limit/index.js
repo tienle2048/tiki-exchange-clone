@@ -48,20 +48,29 @@ function Limit() {
         if (newValue === "") setVolumeBuy(newValue)
         else {
             newValue = Number(newValue)
-            if (!isNaN(newValue)) setVolumeBuy(newValue)
+            if (!isNaN(newValue)) {
+                if(newValue>maxTikixu/PriceBuy) newValue=Math.floor(maxTikixu/PriceBuy)
+                setVolumeBuy(newValue)
+                setPercentBuy(Math.floor(newValue*PriceBuy/maxTikixu*100))
+            }
         }
     }
     const changeVolumeSell = (newValue) => {
         if (newValue === "") setVolumeSell(newValue)
         else {
             newValue = Number(newValue)
-            if (!isNaN(newValue)) setVolumeSell(newValue)
+            if (!isNaN(newValue)) {
+                if(newValue>maxAstra) newValue=Math.floor(maxAstra)
+                setVolumeSell(newValue)
+            }
         }
     }
     const changePercentBuy = (newValue) => {
         setVolumeBuy(Math.floor(newValue * maxTikixu / PriceBuy / 100))
         setPercentBuy(newValue)
     }
+
+
 
     const handleBuy = () => {
         if (PriceBuy !== "" && volumeBuy !== "") {
@@ -130,6 +139,7 @@ function Limit() {
                         max={100}
                         marks={{ 0: <></>, 25: <></>, 50: <></>, 75: <></>, 100: <></> }}
                         onChange={changePercentBuy}
+                        value={percentBuy}
                     />
                 </div>
                 <div className={cx('previewAmount')}>
@@ -163,6 +173,7 @@ function Limit() {
                         max={100}
                         marks={{ 0: <></>, 25: <></>, 50: <></>, 75: <></>, 100: <></> }}
                         onChange={(newValue) => setVolumeSell(Math.floor(newValue * maxAstra / 100))}
+                        value={Math.floor(volumeSell/maxAstra*100)}
                     />
                 </div>
                 <div className={cx('previewAmount')}>
