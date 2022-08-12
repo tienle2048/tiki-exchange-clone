@@ -1,9 +1,5 @@
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
 
 [[headers]]
-  for = "/*"
+  for = "https://api.tiki.vn/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
