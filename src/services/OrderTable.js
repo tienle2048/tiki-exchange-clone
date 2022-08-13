@@ -5,7 +5,6 @@ const getMyOrder =async (accesstoken) => {
         url: 'https://api.tiki.vn/sandseel/api/v2/market/orders?market=asaxu&state[]=wait&state[]=pending',
         method: 'get',
         headers: {
-            'Access-Control-Allow-Origin':'*',
             'Authorization': 'Bearer ' + accesstoken
         }
     }
