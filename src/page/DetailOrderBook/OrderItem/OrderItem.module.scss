@@ -1,0 +1,49 @@
+.order-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 24px;
+    margin: 0 12px;
+    align-items: center;
+    div{
+        width: 25%;
+    }
+
+    .price-up{
+        text-align: left;
+        color: var(--color-up);
+    }
+    .price-down{
+        text-align: left;
+        color:var(--color-down);
+    }
+    .volume{
+        text-align: left;
+        color: var(--gray-20);
+    }
+    .price{
+        text-align: left;
+        color: var(--gray-20);
+    }
+    .total{
+        text-align: right;
+        color: var(--gray-20);
+    }
+
+
+    .volume-bar {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 26%;
+        height: 100%;
+        opacity: 0.15;
+        background: var(--color-up);
+    }
+    .up{
+        background: var(--color-up);
+    }
+    .down{
+        background: var(--color-down);
+    }
+}

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const getMyOrder =async (accesstoken) => {
+const getMyOrder = async (accesstoken) => {
     let options = {
         url: 'https://api.tiki.vn/sandseel/api/v2/market/orders?market=asaxu&state[]=wait&state[]=pending',
         method: 'get',
@@ -11,7 +11,7 @@ const getMyOrder =async (accesstoken) => {
     return await axios(options)
 }
 
-const getHistoryOrder =async (accesstoken) => {
+const getHistoryOrder = async (accesstoken) => {
     let options = {
         url: 'https://api.tiki.vn/sandseel/api/v2/market/orders?market=asaxu&state[]=done&state[]=cancel',
         method: 'get',
@@ -22,7 +22,7 @@ const getHistoryOrder =async (accesstoken) => {
     return await axios(options)
 }
 
-const cancelOrder= async (accesstoken,id)=>{
+const cancelOrder = async (accesstoken, id) => {
     let options = {
         url: `https://api.tiki.vn/sandseel/api/v2/market/orders/${id}/cancel`,
         method: 'post',
@@ -36,7 +36,7 @@ const cancelOrder= async (accesstoken,id)=>{
 
 
 export const orderService = {
-    myOrder:getMyOrder,
-    historyOrder:getHistoryOrder,
-    cancelOrder:cancelOrder
+    myOrder: getMyOrder,
+    historyOrder: getHistoryOrder,
+    cancelOrder: cancelOrder
 }

@@ -109,7 +109,7 @@ function ListOrder() {
     return (
         <div >
             <Table
-                scroll={{ y: 140 }}
+                scroll={{ y: 240 }}
                 expandedRowRender={(record) => <p>{'ddawdawdw'}</p>}
                 columns={columns}
                 dataSource={data}
