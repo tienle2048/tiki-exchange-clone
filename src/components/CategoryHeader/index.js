@@ -60,11 +60,11 @@ function CateloryHeader() {
                 <div className={cx('divider')}></div>
 
                 <div className={cx('ticker-list')}>
-                    <TickerItem title={'Giá Gần Nhất'}>{dataPrice.last} Xu</TickerItem>
-                    <TickerItem title={'Thay Đổi 24h'} color={dataPrice!==''&&dataPrice.price_change_percent[0]==='-'?'red':'green'}>{dataPrice.price_change_percent}</TickerItem>
-                    <TickerItem title={'24h Cao'}>{dataPrice.high} Xu</TickerItem>
-                    <TickerItem title={'24h Thấp'}>{dataPrice.low} Xu</TickerItem>
-                    <TickerItem title={'KL giao dịch trong 24h'}>{dataPrice.volume} Astra</TickerItem>
+                    <TickerItem title={'Giá Gần Nhất'} data={dataPrice.last} >Xu</TickerItem>
+                    <TickerItem title={'Thay Đổi 24h'} color={dataPrice!==''&&dataPrice.price_change_percent[0]==='-'?'red':'green'} data={dataPrice.price_change_percent}></TickerItem>
+                    <TickerItem title={'24h Cao'} data={dataPrice.high}>Xu</TickerItem>
+                    <TickerItem title={'24h Thấp'} data={dataPrice.low}>Xu</TickerItem>
+                    <TickerItem title={'KL giao dịch trong 24h'} data={dataPrice.volume}>Astra</TickerItem>
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ import styles from './Header.module.scss'
 
 import logotiki from '../../assets/images/logotiki.png'
 import astra from '../../assets/images/astra.png'
+import tikixu from '../../assets/svg/tikixu.svg'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons'
@@ -10,10 +11,10 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 
 import Tippy from '@tippyjs/react';
 
-import {useDispatch,useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 
-import {userActions} from "../../actions/user"
+import { userActions } from "../../actions/user"
 
 
 import { infoAction } from '../../actions/infoUser';
@@ -23,26 +24,30 @@ import { infoAction } from '../../actions/infoUser';
 const cx = classNames.bind(styles)
 function Header() {
 
-    const dispatch =useDispatch()
-    const access_token= useSelector(state=>state.authen).user.access_token
-    const data =useSelector(state=>state.info)
-    let info=data.info
-    let property =data.property
-    
+    const dispatch = useDispatch()
+    const access_token = useSelector(state => state.authen).user.access_token
+    const data = useSelector(state => state.info)
+    let info = data.info
+    let property = data.property
+
     //console.log(access_token)
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         dispatch(userActions.logout())
     }
 
-    
-        
-    useEffect(()=>{
-        dispatch(infoAction.info(access_token))
-        dispatch(infoAction.property(access_token))
-    },[])
 
-    
+
+    useEffect(() => {
+        dispatch(infoAction.info(access_token))
+        const interval = setInterval(() => {
+            dispatch(infoAction.property(access_token))
+        }, 3000);
+        return () => clearInterval(interval);
+
+    }, [])
+
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('left')}>
@@ -58,12 +63,12 @@ function Header() {
                 <div className={cx('label')}>Tài sản của tôi:</div>
                 <div className={cx('astra')}>
                     <img src={astra} alt='logo'></img>
-                    <div>{Math.floor((property.balances ?property.balances[0].balance:'0')*1000)/1000}</div>
+                    <div>{Math.floor((property.balances ? property.balances[0].balance : '0') * 1000) / 1000}</div>
                 </div>
                 <div className={cx('okla')}></div>
                 <div className={cx('tikixu')}>
-                    <img src={astra} alt='logo'></img>
-                    <div>{property.balances ?property.balances[1].balance:'0'}</div>
+                    <img src={tikixu} alt='logo'></img>
+                    <div>{property.balances ? Intl.NumberFormat('de-DE').format(property.balances[1].balance) : '0'}</div>
                 </div>
                 <div className={cx('okla')}></div>
                 <Tippy

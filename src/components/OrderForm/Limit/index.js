@@ -6,7 +6,7 @@ import tikixu from '../../../assets/svg/tikixu.svg'
 import { Orders } from '../../../services'
 
 
-import { useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useState } from 'react'
 import { Slider } from 'antd'
 import { toast } from 'react-toastify';
@@ -49,9 +49,9 @@ function Limit() {
         else {
             newValue = Number(newValue)
             if (!isNaN(newValue)) {
-                if(newValue>maxTikixu/PriceBuy) newValue=Math.floor(maxTikixu/PriceBuy)
+                if (newValue > maxTikixu / PriceBuy) newValue = Math.floor(maxTikixu / PriceBuy)
                 setVolumeBuy(newValue)
-                setPercentBuy(Math.floor(newValue*PriceBuy/maxTikixu*100))
+                setPercentBuy(Math.floor(newValue * PriceBuy / maxTikixu * 100))
             }
         }
     }
@@ -60,7 +60,7 @@ function Limit() {
         else {
             newValue = Number(newValue)
             if (!isNaN(newValue)) {
-                if(newValue>maxAstra) newValue=Math.floor(maxAstra)
+                //if (newValue > maxAstra) newValue = Math.floor(maxAstra)
                 setVolumeSell(newValue)
             }
         }
@@ -75,19 +75,19 @@ function Limit() {
     const handleBuy = () => {
         if (PriceBuy !== "" && volumeBuy !== "") {
             Orders.Limit(access_token, PriceBuy, "buy", volumeBuy)
-            .then(()=>{
-                toast.success("Đặt lệnh mua thành công", {
-                    theme: 'colored'
+                .then(() => {
+                    toast.success("Đặt lệnh mua thành công", {
+                        theme: 'colored'
+                    })
+                    setPriceBuy('')
+                    setVolumeBuy('')
+                    setPercentBuy(0)
                 })
-                setPriceBuy('')
-                setVolumeBuy('')
-                setPercentBuy(0)
-            })
-            .catch(()=>{
-                toast.error("Khối lượng tối thiểu là 2", {
-                    theme: 'colored'
+                .catch(() => {
+                    toast.error("Khối lượng tối thiểu là 2", {
+                        theme: 'colored'
+                    })
                 })
-            })
         }
         else toast.error("Nhập đầy đủ giá và khối lượng", {
             theme: 'colored'
@@ -97,18 +97,18 @@ function Limit() {
     const handleSell = () => {
         if (PriceSell !== "" && volumeSell !== "") {
             Orders.Limit(access_token, PriceSell, "sell", volumeSell)
-            .then(()=>{
-                toast.success("Đặt lệnh bán thành công", {
-                    theme: 'colored'
+                .then(() => {
+                    toast.success("Đặt lệnh bán thành công", {
+                        theme: 'colored'
+                    })
+                    setPriceSell('')
+                    setVolumeSell('')
                 })
-                setPriceSell('')
-                setVolumeSell('')
-            })
-            .catch(()=>{
-                toast.error("Khối lượng tối thiểu là 2", {
-                    theme: 'colored'
+                .catch(() => {
+                    toast.error("Khối lượng tối thiểu là 2", {
+                        theme: 'colored'
+                    })
                 })
-            })
         }
         else toast.error("Nhập đầy đủ giá và khối lượng", {
             theme: 'colored'
@@ -173,7 +173,7 @@ function Limit() {
                         max={100}
                         marks={{ 0: <></>, 25: <></>, 50: <></>, 75: <></>, 100: <></> }}
                         onChange={(newValue) => setVolumeSell(Math.floor(newValue * maxAstra / 100))}
-                        value={Math.floor(volumeSell/maxAstra*100)}
+                        value={Math.floor(volumeSell / maxAstra * 100)}
                     />
                 </div>
                 <div className={cx('previewAmount')}>

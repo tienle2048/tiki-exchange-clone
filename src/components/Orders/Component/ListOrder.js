@@ -4,6 +4,7 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { orderService } from '../../../services/OrderTable';
 import { useSelector } from 'react-redux'
+import dateFormat from "dateformat";
 
 
 
@@ -19,10 +20,10 @@ function ListOrder() {
                     return {
                         key: item.id,
                         percent: <Progress type="circle" percent={Math.round((100 - parseInt(item.remaining_volume) / parseInt(item.origin_volume) * 100))} width={40} strokeWidth={10} className="color-text" />,
-                        time: item.created_at,
+                        time: dateFormat(item.created_at, "h:MM:ss, d/mm/yyyy"),
                         type: item.side === 'sell' ? 'bán' : 'mua',
-                        amount: item.origin_volume,
-                        price: item.price,
+                        amount: Intl.NumberFormat('de-DE').format(item.origin_volume),
+                        price: Intl.NumberFormat('de-DE').format(item.price),
                         success: parseInt(item.origin_volume) - parseInt(item.remaining_volume)
                     }
                 })

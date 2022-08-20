@@ -2,6 +2,7 @@ import { Table, Tag } from 'antd'
 import { orderService } from '../../../services/OrderTable';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
+import dateFormat from "dateformat";
 
 
 
@@ -22,10 +23,10 @@ function HistoryOrder() {
                     return {
                         key: item.id,
                         color: 'red',
-                        time: item.created_at,
+                        time: dateFormat(item.created_at, "h:MM:ss, d/mm/yyyy"),
                         type: item.side === 'sell' ? 'bán' : 'mua',
-                        amount: item.origin_volume,
-                        price: item.price?item.price: "Thị trường",
+                        amount: Intl.NumberFormat('de-DE').format(item.origin_volume),
+                        price: item.price? Intl.NumberFormat('de-DE').format(item.price): "Thị trường",
                         success: parseInt(item.origin_volume) - parseInt(item.remaining_volume),
                         tags: state
                     }

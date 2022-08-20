@@ -17,9 +17,9 @@ function OrderItem({price,volume,percent,up,down}) {
 
     return ( 
         <div className={cx('order-item')}>
-            <div className={cx({'price-up':up},{'price-down':down})}>{price}</div>
-            <div className={cx('volume')}>{volume}</div>
-            <div className={cx('total')}>{price*volume}</div>
+            <div className={cx({'price-up':up},{'price-down':down})}>{Intl.NumberFormat('de-DE').format(price)}</div>
+            <div className={cx('volume')}>{Intl.NumberFormat('de-DE').format(volume)}</div>
+            <div className={cx('total')}>{Intl.NumberFormat('de-DE').format(price*volume)}</div>
             <div className={cx('volume-bar',{'up':up},{'down':down})} ref={okla}></div>
         </div>
      );
