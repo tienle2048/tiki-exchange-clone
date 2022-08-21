@@ -43,13 +43,13 @@ chạy frontend trên localhost:
 | đặt lệnh | có | không |
 
 ## Ảnh chụp các trang
-# Login 
-<img src="https://imgur.com/TKFVJOy">
+### Login 
+<img src="https://i.imgur.com/owWiC9z.png">
 
-# Home Page
-<img src="https://imgur.com/FERDLPQ">
+### Home Page
+<img src="https://ii.imgur.com/FERDLPQ.png">
 
-# Detail Order Page
-<img src="https://imgur.com/OZ5Lq7z">
-<img src="https://imgur.com/5i49ziJ">
+### Detail Order Page
+<img src="https://i.imgur.com/OZ5Lq7z.png">
+<img src="https://i.imgur.com/5i49ziJ.png">
 
