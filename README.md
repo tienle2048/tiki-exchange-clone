@@ -42,3 +42,12 @@ chạy frontend trên localhost:
 | xem thông tin tài khoản | có | không |
 | đặt lệnh | có | không |
 
+## Ảnh chụp các trang
+# Login 
+    <img src="https://imgur.com/TKFVJOy">
+# Home Page
+    <img src="https://imgur.com/FERDLPQ">
+# Detail Order Page
+    <img src="https://imgur.com/OZ5Lq7z">
+    <img src="https://imgur.com/5i49ziJ">
+
